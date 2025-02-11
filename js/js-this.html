@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>this</title>
+</head>
+<body>
+    <script>
+        //1. 函式調用
+        //當一個函式不是屬於一個物件中的方法時，直接作為函式來調用時，this 會指向全局物件，在瀏覽器中，默認為 Window 。
+        //但如果是在嚴格模式下，this 為 undefined。
+        var name = "John"; 
+        //全域範圍中用var定義name變數，因此 name變數也會綁定到Window物件上，第二個輸出結果也等同於window.name的值
+        //如果是用let定義，並不會綁定在Window物件上。
+        function callThis() {
+            console.log(this);
+            console.log(this.name);
+        }
+        callThis(); // Window // John
+
+        //2. 物件方法調用
+        //當一個函式是做為一個物件的方法來調用時，this會指向這個物件。
+        const john = {
+            name: "john",
+            callJohn() {
+                console.log(`hello, ${this.name}`);
+            },
+        };
+        john.callJohn(); // hello, john
+
+        //3. 構造函式調用
+        //當一個函式用new關鍵字調用時，此函式執行前會先創造一個新的物件，this 會指向這個新組成的物件。
+        //當構造函式Cellphone被new調用時，會先創造一個新的物件，讓this會指向這個新物件，在這個例子中，就印出了這個新物件的brand是Apple。
+        function Cellphone(brand) {
+            this.brand = brand;
+        }
+        Cellphone.prototype.getBrand = function () {
+            return this.brand;
+        };
+
+        let newIPhone = new Cellphone("Apple");
+        let newPixelPhone = new Cellphone("Google");
+        console.log(newIPhone.getBrand()); // Apple
+        console.log(newPixelPhone.getBrand()); // Google
+
+        //4. apply、call、bind 方法調用
+        //我們也可以使用 apply、call、bind 方法來指定 this 指向的物件。
+        // apply 方法接受兩個參數，第一個是 this 綁定的對象，第二個會放入要傳入函式的陣列參數，並執行此新函式。
+        // call 方法類似為 apply，唯一不同的地方是，apply 第二個參數是陣列，但 call 則是依序放在後面。
+        // bind 方法透過傳入一個物件和要傳入的參數，不同於 apply 和 call，bind 不會立即執行此心函式，而是會返回此新函式。
+        
+        //apply
+        function greet(name, age) {
+            console.log(`Hello ${name}, you are ${age} years old.`);
+        }
+        const person1 = { name: "John", age: 30 };
+        greet.apply(person1, ["John", 30]);
+        //Hello John, you are 30 years old.
+
+        //call
+        function greet(name, age) {
+            console.log(`Hello ${name}, you are ${age} years old.`);
+        }
+        const person2 = { name: "John", age: 30 };
+        greet.call(person2, "John", 30);
+        //Hello John, you are 30 years old.
+
+        //bind
+        function greet(name, age) {
+            console.log(`Hello ${name}, you are ${age} years old.`);
+        }
+        const person = { name: "John", age: 30 };
+        const greetPerson = greet.bind(person, "John");
+        greetPerson(30);
+        //Hello John, you are 30 years old.
+        //總結:
+        //apply和call都是立即執行函數，並允許設置this。
+        //apply使用array傳遞參數，而call逐個參數傳遞。
+        //bind return一個新函數，函數可以在稍後執行時使用指定的this和參數。
+
+        //5. 箭頭函式中的this
+        //ES6 中介紹了一種新的函式型態-箭頭函式(arrow function)。箭頭函式並沒有屬於自己的this值，箭頭函式的this會從他的外在函式繼承
+        //若他的外在函式也同為箭頭函示，則回繼續往上尋找，直到找到全域環境的預設this值(例如：瀏覽器中就是window)。
+        let getThis = () => this;
+        console.log(getThis() === window); // true
+    </script>
+</body>
+</html>
