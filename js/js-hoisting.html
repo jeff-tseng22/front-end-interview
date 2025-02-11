@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hoisting</title>
+</head>
+<body>
+    <script>
+        //在宣告函式之前就使用它，執行這樣的程式碼並不會報錯，其原因就是因為提升(Hoisting)
+        //JavaScript 編譯階段將變數和函式的宣告存入記憶體的概念，使函式和變量的宣告被提升到作用域的頂部(非實際，指概念形容)
+        sayHello(); // Hello
+        function sayHello() {
+            console.log("Hello");
+        }
+
+        //變數與函式的提升
+        //var提升(hoisting): 變數宣告被提升了，但並不會賦值
+        console.log(name1); //undefined
+        var name1 = "Tom";
+
+        //let提升(hoisting): 許多人會誤以為let不會提升 (hoisting)，但概念上，let、const 跟 var 同樣會有提升的行為，不過其中有以下差異：
+        //1.var 會提升到函式作用域(function scope)，但let和const只會提升到區塊作用域(block scope)
+        //2.var 在創建變數與定義變數範圍時，會同時將變數值自動初始化為undefined; 但當let在提升變數到區塊作用域(block scope)範圍時，並不會初始化此變數，這個狀態可以稱之為uninitialized，
+        //也有另一個常見的說法是，let和const定義的變數目前存在於暫時死區(TDZ,Temporal dead zone)。
+        console.log(greeting); // Uncaught ReferenceError: greeting is not defined
+        let greeting = "hi there";
+
+        //函式宣告也有提升，與 var 提升的差異為，函式提升也會創建好函式物件，因此可以在宣告前呼叫。
+        foo1(); //1
+        function foo1() {
+            console.log(1);
+        }
+        //如果是函式表達式，提升行為會與其宣告的變數一樣，用var宣告的foo函式，在宣告前使用時，當時值會是undefined，因此呼叫undefined會報錯。
+        foo2(); // Uncaught TypeError: foo is not a function
+        var foo2 = function () {};
+        //用let宣告的foo函式，在宣告前使用時，此時foo在暫時死區，因此呼叫foo會報錯。
+        foo(); // Uncaught ReferenceError: foo is not defined
+        let foo = function () {};
+
+        //暫時死區(TDZ, Temporal dead zone)
+        //暫時死區(TDZ, Temporal dead zone)錯誤其實是為了 const 所設計的。
+        //試想一下，如果const的提升行為與 var 相同，因此我們在宣告前訪問到const變量時，會拿到undefined的值，
+        //但我們也知道const是常數，同個作用域中值不應該變動，因此如果先拿到undefined後再拿到不同值的設計會不符合規範。
+        //因此，設計了暫時死區的錯誤，避免這種情況發生。
+
+    </script>
+</body>
+</html>
