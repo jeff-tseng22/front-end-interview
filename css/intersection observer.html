@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+    <body>
+        <div class="box">box</div>
+        <div class="container">
+            <h2></h2>
+        </div>
+    </body> 
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: "Roboto", sans-serif;
+            box-sizing: border-box;
+        }
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+        body {
+            width: 100%;
+            height: 250%;
+            background: #aaa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 5rem;
+        }
+        h2 {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 1rem;
+            padding: 1rem;
+        }
+        .box {
+            /* border: 1px solid red; */
+            width: 10rem;
+            height: 10rem;
+            line-height: 10rem;
+            text-align: center;
+            font-size: 4rem;
+            background: white;
+        }
+        .box.toggle {
+            background: red;
+        }
+    </style>
+    <script>
+        //source: https://codepen.io/jim876633/pen/JjLOBVE
+        //source: https://jim1105.coderbridge.io/2022/07/30/intersection-observer/
+        const option = {
+            threshold: 0.5
+        };
+        const callback = (entries, observe) => {
+            if (entries[0].isIntersecting) {
+                document.querySelector(".container h2").textContent = "inner";
+                entries[0].target.style.background = "yellow";
+            } else {
+                document.querySelector(".container h2").textContent = "outer";
+                entries[0].target.style.background = "white";
+            }
+        };
+
+        const observer = new IntersectionObserver(callback, option);
+        observer.observe(document.querySelector(".box"));
+    </script>
+</html>
