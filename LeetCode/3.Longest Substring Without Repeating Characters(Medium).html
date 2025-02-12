@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.Longest Substring Without Repeating Characters</title>
+</head>
+<body>
+    <pre>
+        https://leetcode.com/problems/longest-substring-without-repeating-characters/
+        Example 1:
+            Input: s = "abcabcbb"
+            Output: 3
+            Explanation: The answer is "abc", with the length of 3.
+        Example 2:
+            Input: s = "bbbbb"
+            Output: 1
+            Explanation: The answer is "b", with the length of 1.
+        Example 3:
+            Input: s = "pwwkew"
+            Output: 3
+            Explanation: The answer is "wke", with the length of 3.
+            Notice that the answer must be a substring, "pwke" is a subsequence and not a substring.
+        Constraints:
+            0 <= s.length <= 5 * 104
+            s consists of English letters, digits, symbols and spaces.
+    </pre>
+    <script>
+        /**
+         * @param {string} s
+         * @return {number}
+         */
+        var lengthOfLongestSubstring1 = function(s) {
+            const len = s.length;
+            if (len < 2){ 
+                return len;
+            }
+            let res = [];
+            let tmp = [];
+            [...s].forEach(x => {
+            if (tmp.includes(x)) {
+                tmp = [...tmp.slice(tmp.findIndex(y => y === x ) + 1)];
+            }
+            tmp.push(x);    
+            
+            if (tmp.length > res.length){
+                res = tmp; 
+            }
+        });
+        return res.length;
+        };
+        console.log(lengthOfLongestSubstring1("abcabcbb")); //3
+
+        //用end由前往後找字母，start表示第一次重複發生的地方
+        function lengthOfLongestSubstring2(s) {
+            let maxLength = 0;
+            let start = 0;
+            let charMap = {};
+            for (let end = 0; end < s.length; end++) {
+                const currentChar = s[end];
+                // console.log("currentChar", currentChar);
+                if (charMap[currentChar] !== undefined && charMap[currentChar] >= start) {
+                    start = charMap[currentChar] + 1;
+                    // console.log("start", start);
+                    // console.log("charMap", charMap);
+                }
+                charMap[currentChar] = end;
+                // console.log("charMap[currentChar]", charMap[currentChar]);
+                maxLength = Math.max(end - start + 1);
+            }
+            return maxLength;
+        }
+        // Test cases
+        console.log(lengthOfLongestSubstring2("abcabcbb")); // Output: 3
+    </script>
+</body>
+</html>

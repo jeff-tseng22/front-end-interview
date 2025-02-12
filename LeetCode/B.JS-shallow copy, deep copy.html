@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>shallow copy & deep copy</title>
+</head>
+<body>
+    淺拷貝（Shallow Copy）：
+    淺拷貝是指僅複製物件的第一層屬性，而不會複製物件中的嵌套物件的內容。
+    當你進行淺拷貝時，原始物件及其屬性被複製到新的物件中，但如果屬性是一個物件或陣列，則新物件中的該屬性將只是對原始物件中該屬性的參考。
+    在JavaScript中，常見的淺拷貝方法包括使用Object.assign()或展開運算子（...）。
+    // 使用 Object.assign() 進行淺拷貝
+    <script>
+        const obj1 = { a: 1, b: { c: 2 } };
+        const obj2 = Object.assign({}, obj1);
+        obj2.a = 3;
+        obj2.b.c = 4;
+        console.log(obj1); // { a: 1, b: { c: 4 } }
+        // 使用展開運算子進行淺拷貝
+        const obj3 = { ...obj1 };
+        obj3.a = 5;
+        obj3.b.c = 6;
+        console.log(obj1); // { a: 1, b: { c: 6 } }
+    </script>
+    深拷貝（Deep Copy）：
+    深拷貝是指將整個物件以及所有嵌套的物件都複製到新的物件中，而不僅僅是第一層屬性。
+    深拷貝會遞歸地複製物件中的所有內容，確保新的物件與原始物件完全獨立，對其中一個物件的修改不會影響到另一個。
+    由於JavaScript中的物件可以是相互嵌套的，因此實現深拷貝可能會比較複雜。常見的方法包括遞歸複製每個屬性或使用第三方庫（如lodash）提供的深拷貝函數。
+    <script>
+        // 使用遞歸進行深拷貝
+        function deepCopy(obj) {
+            if (typeof obj !== 'object' || obj === null) {
+                return obj;
+            }
+            let newObj = Array.isArray(obj) ? [] : {};
+            for (let key in obj) {
+                newObj[key] = deepCopy(obj[key]);
+            }
+            return newObj;
+        }
+        const obj4 = { a: 1, b: { c: 2 } };
+        const obj5 = deepCopy(obj4);
+        obj5.a = 3;
+        obj5.b.c = 4;
+        console.log(obj4); // { a: 1, b: { c: 2 } }
+    </script>
+</body>
+</html>

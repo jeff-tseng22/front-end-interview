@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intermediate Exercise</title>
+</head>
+<body>
+    <h1>Intermediate Exercise</h1>
+    <div>
+        1.Write a function called "mySort" that takes an array of integers as input, and returns the sorted version of the input array.<br>
+        mySort([17, 0, -3, 2, 1, 0.5]); // returns [-3, 0, 0.5, 1, 2, 17]
+    </div>
+        <!-- <script>
+            function findMin(arr) {
+                let min = arr [0];
+                for (let i = 1;i < arr.length; i++) {
+                    if (arr[i] < min) {
+                            min = arr[i];
+                    }
+                }
+                return min;
+            }
+            function mySort(arr) {
+                let result = [];
+                while(arr.length > 0){
+                    let min = findMin(arr);
+                    result.push(min);
+                    arr.splice(arr.indexOf(min), 1);
+                }
+                return result;
+            }
+            console.log(mySort([17, 0, -3, 2, 1, 0.5])); // returns [-3, 0, 0.5, 1, 2, 17])
+        </script> -->
+    
+    <div>
+        2.Write a function called "isPrime(質數)" that takes an integer as input, and returns a boolean value that indicates if the input number is prime.<br>
+        isPrime(1); // returns false<br>
+        isPrime(5); // returns true<br>
+        isPrime(91); // returns false<br>
+        isPrime(1000000); // returns false
+    </div>
+    <!-- <script>
+        function isPrime(n) {
+            if (n == 1) {
+                return false;
+            }
+
+            let starter = 2;
+            while (starter < n) {
+                if (n % starter == 0) {
+                    return false;
+                }
+                starter++;
+            }
+            return true;
+        }
+        console.log(isPrime(1));
+        console.log(isPrime(5)); // returns true
+        console.log(isPrime(91)); // returns false
+        console.log(isPrime(1000000)); // returns false
+    </script> -->
+
+    <div>
+        3.Write a function called "confirmEnding" that takes 2 strings as input, and returns a boolean value that indicates if the first input ends with the second input.<br>
+        confirmEnding("Bastian", "n"); // true<br>
+        confirmEnding("Connor", "n"); // false<br>
+        confirmEnding("Open sesame", "same"); // true
+    </div>
+    <!-- <script>
+        function confirmEnding(str1, str2) {
+            let k = str1.length - 1;
+            for (let i = str2.length - 1; i>=0; i--){
+                if (str2[i] != str1[k]) {
+                    console.log(false);
+                    return false;
+                } else {
+                    k--;		
+                }	
+            }
+            console.log(true);
+            return true;
+        }
+        confirmEnding("Bastian", "n"); //true
+        confirmEnding("Cannor", "n"); //false
+        confirmEnding("Open sesame", "same"); //true
+    </script> -->
+
+    <div>
+        4.Write a function called "findDuplicate" that an array of integers as inputs, and check if there's any duplicate values in the array.<br>
+        findDuplicate([1, 3, 5, 7, 9, 3]); // returns true<br>
+        findDuplicate([]); // returns false<br>
+        findDuplicate([3, 4, 5, 6, 7, 10000, 0]); // returns false
+    </div>
+    <!-- <script>
+        function findDuplicate(arr) {
+            for (let i = 0; i < arr.length; i++) {
+                for (let j = 0; j < arr.length; j++) {
+                    if (i != j && arr[i] == arr[j]) {
+                        //console.log(true);
+                        return true;
+                    }
+                }
+            }
+            //console.log(false);
+            return false;
+        }
+
+        console.log(findDuplicate([1, 3, 5, 7, 9, 3])); // returns true
+        console.log(findDuplicate([])); // returns false
+        console.log(findDuplicate([3, 4, 5, 6, 7, 10000, 0])); // returns false 
+    </script> -->
+
+    <div>
+        5.Write a function called "palindrome" that checks if the input string is a palindrome. (Search on google if you don't know what a palindrome is.)<br>
+        palindrome("bearaeb"); // true<br>
+        palindrome("Whatever revetahw"); // true<br>
+        palindrome("Aloha, how are you today?"); // false
+    </div>
+    <!-- <script>
+        function palindrome(str) {
+            let i = 0;
+            let j = str.length - 1;
+            while (i < j) {
+                if (str[i] != str[j]) {
+                    console.log(false);
+                    return false;
+                }
+                i++;
+                j--;
+            }
+            console.log(true);
+            return true;
+        }
+        palindrome("bearaeb"); // true
+        palindrome("Whatever revetahW"); // true
+        palindrome("Aloha, how are you today?"); // false
+    </script> -->
+
+    <div>
+        6.Write a function called "pyramid" that takes an integer as input, and prints a pyramid in the following pattern:<br>
+        pyramid(1);<br>
+        //*<br>
+        pyramid(2);<br>
+        //  *<br>
+        // ***<br>
+        pyramid(4);<br>
+        //    *<br>
+        //   ***<br>
+        //  *****<br>
+        // *******
+    </div>
+    <!-- <script>
+        function drawRow(sapce, star) {
+            let result = "";
+            for (let i = 0; i < sapce; i++) { 
+                result += " ";
+            }
+            for (let i = 0; i < star; i++) {
+                result += "*";
+            }
+            console.log(result);
+        }
+        // //手動畫出金字塔
+        // drawRow(3, 1);
+        // drawRow(2, 3);
+        // drawRow(1, 5);
+        // drawRow(0, 7);
+
+        function pryamid(n) {
+            let i = n - 1;
+            let j = 1;
+            for (let k = 1; k <= n; k++){
+                drawRow(i, j);
+                i--;
+                j+=2;
+            }
+        }
+        pryamid(1);
+        console.log("-------------");
+        pryamid(4);
+        console.log("-------------");
+        pryamid(15);
+    </script> -->
+
+    <div>
+        7.Write a function called "inversePyramid" that draws pyramid upside down.
+    </div>
+    <!-- <script>
+        function drawRow(sapce, star) {
+            let result = "";
+            for (let i = 0; i < sapce; i++) { 
+                result += " ";
+            }
+            for (let i = 0; i < star; i++) {
+                result += "*";
+            }
+            console.log(result);
+        }
+        function inversePyramid(n){
+            let i = 0;
+            let j = 2 * n - 1;
+            for (let k = 1; k <= n; k++){
+                drawRow(i, j);
+                i++;
+                j -= 2;
+            }
+        }
+        inversePyramid(1);
+        console.log("-------------");
+        inversePyramid(4);
+        console.log("-------------");
+        inversePyramid(15);
+    </script> -->
+
+    <div>
+        8.Write a function called "factorPrime" that takes an integer as input, and returns the prime factorization of the input.<br>
+        factorPrime(120); // returns "2 x 2 x 2 x 3 x 5" 還有改良空間
+    </div>
+    <!-- <script>
+        function factorPrime(n) {
+            let answer = n + " = ";
+            let p = 2;
+            while (p <= n) {
+                if (n % p == 0){
+                    answer += p +" x ";	
+                    n /= p;
+                } else {
+                    p++;
+                }
+            }
+            answer = answer.substring(0 ,answer.length - 3);
+            console.log(answer)
+        }
+        factorPrime(120);
+    </script> -->
+
+    <div>
+        9.Write a function called "intersection" that takes 2 arrays, and returns an array of elements that are in the intersection of 2 arrays.<br>
+        intersection([1, 3, 4, 6, 10], [5, 11, 4, 3, 100, 144, 0]); // returns [3, 4]
+    </div>
+    <!-- <script>
+        function intersection(arr1, arr2){
+            let result = [];
+            for (let i = 0; i < arr1.length; i++) {
+                for (let j = 0; j < arr2.length; j++) {
+                    if (arr1[i] == arr2[j]) {
+                        //check if result array already has arr1[i] or arr2[j]
+                        let okay = true;
+                        for (let k = 0; k < result.length; k++){
+                            if (arr1[i] == result[k]) {
+                                okay = false;
+                            }
+                        }
+                        if (okay) {
+                            result.push(arr1[i]);
+                        }
+                    }
+                }
+            }
+            console.log(result);
+        }
+        intersection([1, 3, 4, 6, 10], [5, 11, 4, 3, 100, 144, 0]); // returns [3, 4]
+    </script> -->
+
+    <div>
+        10.Write a function called "flatten" that flattens an array.<br>
+        flatten([1, [[], 2, [0, [1]], [3]], [1, 3, [3], [4, [1]], [2]]]);<br>
+        // returns [1, 2, 0, 1, 3, 1, 3, 3, 4, 1, 2]
+    </div>
+    <!-- <script>
+        function flatten(arr) {
+            let result = [];
+            helper(arr);
+            console.log(result);
+            return result;
+            
+            function helper(arr1) {
+                for (let i = 0; i < arr1.length; i++) {
+                    if (Array.isArray(arr1[i])) {
+                        helper(arr1[i]);
+                    } else {
+                        result.push(arr1[i]);
+                    }
+                }
+            }
+        }
+
+        flatten([1, [[], 2, [0, [1]], [3]], [1, 3, [3], [4, [1]], [2]]]);
+        // returns [1, 2, 0, 1, 3, 1, 3, 3, 4, 1, 2]
+    </script> -->
+</body>
+</html>

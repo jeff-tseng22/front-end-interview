@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>101. Symmetric Tree</title>
+</head>
+<body>
+    <pre>
+        Given the root of a binary tree, check whether it is a mirror of itself (i.e., symmetric around its center).
+        Example 1:
+        Input: root = [1,2,2,3,4,4,3]
+        Output: true
+
+        Example 2:
+        Input: root = [1,2,2,null,3,null,3]
+        Output: false
+
+        Constraints:
+        The number of nodes in the tree is in the range [1, 1000].
+        -100 <= Node.val <= 100
+        Follow up: Could you solve it both recursively and iteratively?
+    </pre>
+    <script>
+        var isSymmetric = function(root) {
+            if (root === null) return true;
+            let nodes1 = [root];
+            while (nodes1.length) {
+                let len = nodes1.length;
+                for (let i = 0; i < Math.ceil(len / 2); i++) {
+                    if (nodes1[i].val !== nodes1[len - 1 - i].val) {
+                        return false;
+                    }
+                    if (nodes1[i].left === null && nodes1[len - 1 - i].right !== null) {
+                        return false;
+                    }
+                    if (nodes1[i].right === null && nodes1[len - 1 - i].left !== null) {
+                        return false;
+                    }
+                }
+                while (len--) {
+                    let node = nodes1.pop();
+                    if (node.left && node.right) {
+                        nodes1.unshift(node.left);
+                        nodes1.unshift(node.right);
+                    } else if (node.left === null && node.right !== null) {
+                        nodes1.unshift(new TreeNode(null));
+                        nodes1.unshift(node.right);
+                    } else if (node.left !== null && node.right === null) {
+                        nodes1.unshift(node.left);
+                        nodes1.unshift(new TreeNode(null));
+                    }
+                }
+            }
+            return true;
+        };
+        console.log(isSymmetric([1,2,2,3,4,4,3]));
+        console.log(isSymmetric([1,2,2,null,3,null,3]));
+    </script>
+</body>
+</html>

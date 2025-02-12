@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注音input</title>
+</head>
+<body>
+    <h1>請輸入注音：</h1>
+    <form>
+        <input type="text" id="input" placeholder="只能輸入注音符號">
+        <button type="submit">提交</button>
+    </form>
+
+    <script>
+    // document.addEventListener('DOMContentLoaded', function() {
+    // const inputElement = document.getElementById('input');
+    // const formElement = document.querySelector('form');
+
+    // formElement.addEventListener('submit', function(event) {
+    //     event.preventDefault(); // 防止表單提交
+
+    //     const inputValue = inputElement.value;
+    //     const regex = /^[bpmfdtnlgkhjqxrzcsywaeiouv]+$/;
+
+    //     if (regex.test(inputValue)) {
+    //     console.log('輸入符合注音格式');
+    //     // 可以在這裡執行你希望的操作，因為輸入符合注音格式
+    //     } else {
+    //     console.log('輸入不符合注音格式');
+    //     // 可以在這裡提供一些提示或處理不符合格式的情況
+    //     }
+    // });
+    // });
+    
+    // 獲取所有帶有"class"屬性為"no-zhuyin"的輸入元素
+    const noZhuyinInputs = document.querySelectorAll('.no-zhuyin');
+
+    // 監聽輸入事件
+    noZhuyinInputs.forEach(input => {
+        input.addEventListener('input', event => {
+            const inputValue = event.target.value;
+            const cleanedValue = removeZhuyin(inputValue);
+            event.target.value = cleanedValue;
+        });
+    });
+
+    // 去除注音符號的函數
+    function removeZhuyin(text) {
+        // 在這裡添加您的邏輯，用於去除注音符號
+        // 例如，您可以使用正則表達式將注音符號替換為空字符串
+        // 以下是一個示例，可能需要根據您的需求進行調整
+        const zhuyinRegex = /[\u3105-\u3129]/g; // 注音符號的Unicode範圍
+        const cleanedText = text.replace(zhuyinRegex, '');
+        return cleanedText;
+    }
+    </script>
+</body>
+</html>

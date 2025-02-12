@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <pre>
+        https://leetcode.com/problems/median-of-two-sorted-arrays/
+        Example 1:
+            Input: nums1 = [1,3], nums2 = [2]
+            Output: 2.00000
+            Explanation: merged array = [1,2,3] and median is 2.
+        Example 2:
+            Input: nums1 = [1,2], nums2 = [3,4]
+            Output: 2.50000
+            Explanation: merged array = [1,2,3,4] and median is (2 + 3) / 2 = 2.5.
+        Constraints:
+            nums1.length == m
+            nums2.length == n
+            0 <= m <= 1000
+            0 <= n <= 1000
+            1 <= m + n <= 2000
+            -106 <= nums1[i], nums2[i] <= 106
+    </pre>
+    <script>
+        // method1
+        var findMedianSortedArrays = function(nums1, nums2) {
+            let median = nums1.concat(nums2);
+            median = median.sort((a, b) => a-b);
+            console.log("median a-b", median);
+            if (median.length % 2 == 1)
+                {
+                    return median[parseInt(median.length / 2)]; //parseInt() 函式能將輸入的字串轉成整數; toString()整數轉成字串
+                }
+            else return ((median[median.length / 2]) + (median[median.length / 2 -1]))/2;  
+        };
+        console.log(findMedianSortedArrays([1,3], [2]));
+
+        // method2
+        function findMedianSortedArrays(nums1, nums2) {
+            const merged = mergeSortedArrays(nums1, nums2);
+            const length = merged.length;
+            const mid = Math.floor(length / 2);
+
+            if (length % 2 === 0) {
+                return (merged[mid - 1] + merged[mid]) / 2;
+            } else {
+                return merged[mid];
+            }
+        }
+        function mergeSortedArrays(nums1, nums2) {
+            const merged = [];
+            let i = 0;
+            let j = 0;
+
+            console.log(nums1.length);
+            while (i < nums1.length && j < nums2.length) {
+                if (nums1[i] <= nums2[j]) {
+                merged.push(nums1[i]);
+                i++;
+                } else {
+                merged.push(nums2[j]);
+                j++;
+                }
+            }
+            while (i < nums1.length) {
+                merged.push(nums1[i]);
+                i++;
+            }
+            while (j < nums2.length) {
+                merged.push(nums2[j]);
+                j++;
+            }
+            return merged;
+        }
+
+        // Example usage:
+        const nums1 = [1, 3];
+        const nums2 = [2];
+        const median = findMedianSortedArrays(nums1, nums2);
+        // console.log(median); // Output: 2.00000
+        // method3
+    </script>
+</body>
+</html>

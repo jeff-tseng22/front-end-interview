@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array</title>
+</head>
+<body>
+    <pre>
+        <!-- 後面加新值 -->
+        Array.prototype.push(elementN)
+        <!-- 前面加新值 -->
+        Array.prototype.unshift(elementN)
+        <!-- 移除最後值 -->
+        Array.prototype.pop()
+        <!-- 移除最前值 -->
+        Array.prototype.shift()
+        <!-- 陣列合併並回傳新陣列 -->
+        Array.prototype.concat()
+        <!-- 回傳"第一個"符合條件的位置 index，若都找不到則回傳 -1 -->
+        Array.prototype.findIndex(item, index, array)
+        <!-- 回傳一個值，且是"第一個"抓到條件為 true 的值 -->
+        Array.prototype.find(item, index, array)
+
+
+
+
+        ref: https://ithelp.ithome.com.tw/articles/10213787
+    </pre>
+    <script>
+        var inventors = [
+            { first: 'Albert', last: 'Einstein', year: 1879, passed: 1955 },
+            { first: 'Isaac', last: 'Newton', year: 1643, passed: 1727 },
+            { first: 'Galileo', last: 'Galilei', year: 1564, passed: 1642 },
+            { first: 'Marie', last: 'Curie', year: 1867, passed: 1934 },
+            { first: 'Johannes', last: 'Kepler', year: 1571, passed: 1630 },
+            { first: 'Nicolaus', last: 'Copernicus', year: 1473, passed: 1543 },
+            { first: 'Max', last: 'Planck', year: 1858, passed: 1947 },
+            { first: 'Katherine', last: 'Blodgett', year: 1898, passed: 1979 },
+            { first: 'Ada', last: 'Lovelace', year: 1815, passed: 1852 },
+            { first: 'Sarah E.', last: 'Goode', year: 1855, passed: 1905 },
+            { first: 'Lise', last: 'Meitner', year: 1878, passed: 1968 },
+            { first: 'Hanna', last: 'Hammarström', year: 1829, passed: 1909 }
+        ];
+        // 1.findIndex
+        const findIndexEmpty = inventors.findIndex(function(item){
+        })
+        // console.log(findIndexEmpty) // 沒有找到會回傳 -1
+        // console.log(inventors) // 原本的 array
+        const findIndexInventors = inventors.findIndex(function(item){
+            return item.year > 1870;
+        })
+        // console.log(findIndexInventors) // 0
+        // 有好幾個是 > 1800 的，但他只會回傳"第一個"抓到的 index
+
+        // 2.find
+        const findEmpty2 = inventors.find(function(item){
+        })
+        // console.log(findEmpty2) // 沒有條件會 undefined
+        // console.log(inventors) // 原本的 array
+        const findInventors2 = inventors.find(function(item){
+            return item.year > 1870;
+        })
+        // console.log(findInventors2) // 有好幾個是 > 1800 的，但他只會回傳"第一個"抓到的
+        // { first: 'Albert', last: 'Einstein', year: 1879, passed: 1955 }
+
+        // 3.filter
+        const filterEmpty3 = inventors.filter(function(item){
+        })
+        // console.log(filterEmpty3) // 沒有條件會 undefined
+        // console.log(inventors) // 原本的 array
+        const filterInventors3 = inventors.filter(function(item){
+            return item.year > 1870;
+        })
+        // console.log(filterInventors3)
+        // [{first: "Albert", last: "Einstein", year: 1879, passed: 1955}
+        // {first: "Katherine", last: "Blodgett", year: 1898, passed: 1979},
+        // {first: "Lise", last: "Meitner", year: 1878, passed: 1968}]
+
+        // 4.forEach
+        const forEachInventors4 = inventors.forEach(function(item){
+            return item.year > 1870;
+        })
+        // console.log(forEachInventors4) // undefined, 不會 return 東西
+        inventors.forEach(function(item){
+            item.year =  1870;
+        })
+        // console.log(inventors) // 全部 12 個的 year = 1870
+
+        var inventors = [
+            { first: 'Albert', last: 'Einstein', year: 1879, passed: 1955 },
+            { first: 'Isaac', last: 'Newton', year: 1643, passed: 1727 },
+            { first: 'Galileo', last: 'Galilei', year: 1564, passed: 1642 },
+            { first: 'Marie', last: 'Curie', year: 1867, passed: 1934 },
+            { first: 'Johannes', last: 'Kepler', year: 1571, passed: 1630 },
+            { first: 'Nicolaus', last: 'Copernicus', year: 1473, passed: 1543 },
+            { first: 'Max', last: 'Planck', year: 1858, passed: 1947 },
+            { first: 'Katherine', last: 'Blodgett', year: 1898, passed: 1979 },
+            { first: 'Ada', last: 'Lovelace', year: 1815, passed: 1852 },
+            { first: 'Sarah E.', last: 'Goode', year: 1855, passed: 1905 },
+            { first: 'Lise', last: 'Meitner', year: 1878, passed: 1968 },
+            { first: 'Hanna', last: 'Hammarström', year: 1829, passed: 1909 }
+        ];
+        // 5.map
+        const mapInventors5 = inventors.map(function(item){
+            return item.year > 1870;
+        })
+        console.log(mapInventors5) // [false, false, true ... 12 個]
+        console.log(inventors) // 原本的 array
+        
+        const mapInventors50 = inventors.map(function(item){
+            if(item.year > 1870){
+                return `${item.year}歲`;
+            }
+            return false;
+        })
+        console.log(mapInventors50) // ["1879歲", false, false....]
+        // 不論是空的或是 false，都會回傳
+    </script>
+</body>
+</html>

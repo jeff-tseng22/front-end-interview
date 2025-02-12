@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1. Two Sum</title>
+</head>
+<body>
+    <pre>
+        https://leetcode.com/problems/two-sum/
+        https://ithelp.ithome.com.tw/articles/10232097
+        map MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map
+        in operator MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/in
+        https://github.com/qianlongdoit/leetCode-js/blob/master/001.two%20sum.js
+
+        Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+        You may assume that each input would have exactly one solution, and you may not use the same element twice.
+        You can return the answer in any order.
+
+        Example 1:
+            Input: nums = [2,7,11,15], target = 9
+            Output: [0,1]
+            Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
+        Example 2:
+            Input: nums = [3,2,4], target = 6
+            Output: [1,2]
+        Example 3:
+            Input: nums = [3,3], target = 6
+            Output: [0,1]
+        
+        Constraints:
+        2 <= nums.length <= 104
+        -109 <= nums[i] <= 109
+        -109 <= target <= 109
+        Only one valid answer exists.
+        Follow-up: Can you come up with an algorithm that is less than O(n2) time complexity?
+
+        new Map()特性:
+        1. set(key, value) 將指定的鍵值對添加到 Map 中。如果鍵已經存在，則更新其對應的值
+        2. delete(key) 移除 Map 中指定鍵的元素。如果鍵存在且已被移除，則返回 true；否則，返回 false
+        3. clear() 移除 Map 中的所有元素
+        4. size 返回 Map 中元素的數量
+        5. keys() 返回一個包含 Map 中所有鍵的 Iterator 對象
+        6. values() 返回一個包含 Map 中所有值的 Iterator 對象
+        7. entries() 返回一個包含 Map 中所有鍵值對的 Iterator 對象。每個元素都是一個 [key, value] 形式的數組
+        8. forEach(callbackFn, thisArg) 對 Map 中的每個元素執行一次給定的函數。callbackFn 接受三個參數：值、鍵和 Map 本身
+    </pre>
+    <script>
+        /**
+         * @param {number[]} nums
+         * @param {number} target
+         * @return {number[]}
+        */
+            //method1: 使用Map，再遍歷; 缺點兩個循環，可再減少冗餘的計算
+            let twoSum1 = function(nums, target) {
+                //把Array的每個數字及其索引存儲在Mymap中
+                let Mymap = new Map(); 
+                for(let i = 0; i < nums.length; i++){
+                    Mymap.set(nums[i], i);
+                }
+                //遍歷數組，計算目標數字 goal，並檢查 Mymap 中是否存在 goal。如果存在且不是同一個元素，返回它們的索引
+                for(let x = 0; x < nums.length; x++){
+                    let goal = target - nums[x];
+                    if(Mymap.has(goal) && x != Mymap.get(goal))
+                        return[x, Mymap.get(goal)];
+                }
+            }
+            // console.log(twoSum1([3,2,4], 6));
+            //method1優化: 一個循環遍歷nums陣列，計算goal，檢查goal是否已經存在於哈希表Mymap中
+            let twoSum1aa = function(nums, target) {
+                let Mymap = new Map();
+                for (let i = 0; i < nums.length; i++) {
+                    let goal = target - nums[i];
+                    if (Mymap.has(goal)) {
+                        return [Mymap.get(goal), i];
+                    }
+                    Mymap.set(nums[i], i);
+                }
+                return null; // 如果沒有找到符合條件的組合，返回 null
+            }
+            // console.log(twoSum1aa([3, 2, 4], 6)); // 輸出: [1, 2]
+
+
+            let twoSum = function(nums, target) {
+            const map = {};
+            for (let i = 0; i < nums.length; i++) {
+                let findNum = target - nums[i];
+                if (map[findNum] !== undefined){
+                return [i, map[findNum]]
+                }
+                map[nums[i]] = i;
+            }
+                return []
+            };
+            // console.log(twoSum1([3,2,4], 6));
+
+            //method2
+            let twoSum2 = function(nums, target) {
+                let dict = {};
+                for(let i = 0; i < nums.length; i++){
+                    dict[nums[i]] = i;
+                }
+                for(let x = 0; x < nums.length; x++){
+                    let goal = target - nums[x];
+                    if(goal in dict && x != dict[goal])
+                        return[x, dict[goal]];
+                }
+                return null;
+            }
+            // console.log(twoSum2([3,2,4], 6));
+            //method2優化後
+            let twoSum2a = function(nums, target) {
+                let dict = {};
+                for (let i = 0; i < nums.length; i++) {
+                    let goal = target - nums[i];
+                    if (goal in dict) {
+                        return [dict[goal], i];
+                    }
+                    dict[nums[i]] = i;
+                }
+                return null; // 如果沒有找到符合條件的組合，返回 null
+            }
+            // console.log(twoSum2a([3, 2, 4], 6)); //輸出: [1, 2]
+    </script>
+</body>
+</html>

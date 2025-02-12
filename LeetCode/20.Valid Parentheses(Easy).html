@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>20. Valid Parentheses</title>
+</head>
+<body>
+    <pre>
+        Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+    
+        An input string is valid if:
+    
+        Open brackets must be closed by the same type of brackets.
+        Open brackets must be closed in the correct order.
+        Every close bracket has a corresponding open bracket of the same type.
+        Example 1:
+        Input: s = "()"
+        Output: true
+    
+        Example 2:
+        Input: s = "()[]{}"
+        Output: true
+    
+        Example 3:
+        Input: s = "(]"
+        Output: false
+    
+        Constraints:
+        1 <= s.length <= 104
+        s consists of parentheses only '()[]{}'.
+    </pre>
+    <script>
+        /**
+         * @param {string} s
+         * @return {boolean}
+         */
+        var isValid = function(s) {
+            while(s.indexOf("{}") !== -1 || s.indexOf("[]") !== -1 || s.indexOf("()") !== -1) {
+                s = s.replace(/\(\)|\[\]|\{\}/g, "")
+            }
+            return s ? false : true
+        };
+        console.log(isValid("()"));
+        console.log(isValid("()[]{}"));
+        console.log(isValid("(]"));
+    </script>
+
+</body>
+</html>

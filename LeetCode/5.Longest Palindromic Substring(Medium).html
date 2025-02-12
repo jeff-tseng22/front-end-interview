@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <pre>
+        https://leetcode.com/problems/longest-palindromic-substring/
+        https://dev.to/urfan/leetcode-longest-palindromic-substring-with-javascript-544p
+        Example 1:
+            Input: s = "babad"
+            Output: "bab"
+            Explanation: "aba" is also a valid answer.
+        Example 2:
+            Input: s = "cbbd"
+            Output: "bb"
+        Constraints:
+            1 <= s.length <= 1000
+            s consist of only digits and English letters.
+    </pre>
+    <script>
+        //method1
+        var longestPalindrome1 = function(s) {
+            let currentLongest = [0, 1];
+            for (let i=1; i< s.length; i++){
+                const odd = expandAroundCenter(s, i-1, i+1); // treating the given letter as a center and checking its surrounding letters 
+                const even = expandAroundCenter(s, i-1, i); // checking if the  center is between the given letter and the previous letter
+                const longest = odd[1] - odd[0] > even[1] - even[0] ? odd : even; // choosing the longest palindrome between odd and even
+                currentLongest = currentLongest[1] - currentLongest[0] > longest [1] - longest[0] ?  currentLongest : longest // comparing the longest to the current longest palindrome and updating current longest accordingly
+            } 
+            return s.slice(currentLongest[0], currentLongest[1]);
+        };
+
+        function expandAroundCenter(s, leftIdx, rightIdx) {
+            while (leftIdx >= 0 && rightIdx < s.length){
+                if(s[leftIdx] !== s[rightIdx]) break;
+                leftIdx--;
+                rightIdx++;
+            }
+            return [leftIdx + 1, rightIdx]
+        }
+        console.log(longestPalindrome1("babad"));
+        
+        //method2
+        function longestPalindrome2(s) {
+            if (s.length === 0) return "";
+            let start = 0;
+            let maxLength = 1;
+            function expandAroundCenter(left, right) {
+                while (left >= 0 && right < s.length && s[left] === s[right]) {
+                    const currentLength = right - left + 1;
+                    if (currentLength > maxLength) {
+                        start = left;
+                        maxLength = currentLength;
+                    }
+                    left--;
+                    right++;
+                }
+            }
+            for (let i = 0; i < s.length; i++) {
+                expandAroundCenter(i, i); // odd length palindrome
+                expandAroundCenter(i, i+1); // even length palindrome
+            }
+            return s.substring(start, start + maxLength);
+        }
+        // Example usage:
+        const s1 = "babad";
+        console.log(longestPalindrome2(s1)); // Output: "bab" or "aba"
+
+        const s2 = "cbbd";
+        console.log(longestPalindrome2(s2)); // Output: "bb"
+    </script>
+</body>
+</html>

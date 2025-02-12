@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2.Add Two Numbers</title>
+</head>
+<body>
+    <pre>
+        https://leetcode.com/problems/add-two-numbers/
+        https://duncan-mcardle.medium.com/leetcode-problem-2-add-two-numbers-javascript-2c158d3b965
+        You are given two non-empty linked lists representing two non-negative integers. 
+        The digits are stored in reverse order, and each of their nodes contains a single digit. 
+        Add the two numbers and return the sum as a linked list.
+        You may assume the two numbers do not contain any leading zero, except the number 0 itself.
+        Example 1:
+            Input: l1 = [2,4,3], l2 = [5,6,4]
+            Output: [7,0,8]
+            Explanation: 342 + 465 = 807.
+        Example 2:
+            Input: l1 = [0], l2 = [0]
+            Output: [0]
+        Example 3:
+            Input: l1 = [9,9,9,9,9,9,9], l2 = [9,9,9,9]
+            Output: [8,9,9,9,0,0,0,1]
+    </pre>
+    <script>
+        /**
+         * Definition for singly-linked list.
+         * function ListNode(val, next) {
+         *     this.val = (val===undefined ? 0 : val)
+         *     this.next = (next===undefined ? null : next)
+         * }
+         */
+        /**
+         * @param {ListNode} l1
+         * @param {ListNode} l2
+         * @return {ListNode}
+        */
+        let addTwoNumbers1 = function(digits1, digits2) {
+            //These lines initialize two variables i and j to the lengths of digits1 and digits2 arrays minus 1, respectively.
+            //These variables are used to traverse(遍歷) the arrays from right to left.
+            let i = digits1.length - 1;
+            let j = digits2.length - 1;
+            // console.log("i, j", i, j);
+            let carry = 0;
+            let result = [];
+
+            while (i >= 0 || j >= 0 || carry > 0) {
+                let sum = (i >= 0 ? digits1[i] : 0) + (j >= 0 ? digits2[j] : 0) + carry;
+                console.log("digits1[i]", digits1[i], "digits2[j]", digits2[j]);
+                console.log("sum", sum);
+                result.unshift(sum % 10);
+                carry = Math.floor(sum / 10);
+                console.log("carry", carry);
+                i--;
+                j--;
+            }
+            return result;
+        };
+        console.log(addTwoNumbers1([2, 4, 3], [5, 6, 4])); // Output will be [8, 0, 8]
+        console.log(addTwoNumbers1([9,9,9,9,9,9,9], [9,9,9,9])); // Output will be [8, 0, 8]
+    </script>
+</body>
+</html>

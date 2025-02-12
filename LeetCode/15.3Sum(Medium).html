@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3sum</title>
+</head>
+<body>
+    <pre>
+        Given an integer array nums, return all the triplets [nums[i], nums[j], nums[k]] such that i != j, i != k, and j != k, and nums[i] + nums[j] + nums[k] == 0.
+        Notice that the solution set must not contain duplicate triplets.
+        Example 1:
+        Input: nums = [-1,0,1,2,-1,-4]
+        Output: [[-1,-1,2],[-1,0,1]]
+        Explanation:
+        nums[0] + nums[1] + nums[2] = (-1) + 0 + 1 = 0.
+        nums[1] + nums[2] + nums[4] = 0 + 1 + (-1) = 0.
+        nums[0] + nums[3] + nums[4] = (-1) + 2 + (-1) = 0.
+        The distinct triplets are [-1,0,1] and [-1,-1,2].
+        Notice that the order of the output and the order of the triplets does not matter.
+    
+        Example 2:
+        Input: nums = [0,1,1]
+        Output: []
+        Explanation: The only possible triplet does not sum up to 0.
+    
+        Example 3:
+        Input: nums = [0,0,0]
+        Output: [[0,0,0]]
+        Explanation: The only possible triplet sums up to 0.
+        
+    
+        Constraints:
+        3 <= nums.length <= 3000
+        -105 <= nums[i] <= 105
+    </pre>
+    <script>
+        var threeSum = function (nums) {
+        let n = nums.length;
+        if (n < 3) return [];
+        let result = [];
+        nums.sort((a, b) => a - b);
+
+        let index = 0;
+        while (index < n - 2) {
+            //  结果去重
+            //  什么情况会重复？
+            //  即target相等的时候，所以当本次target和上次target相等就跳过本次
+            if (index > 0 && nums[index] === nums[index - 1]) {
+            index++;
+            continue;
+            }
+            let target = -nums[index];
+            let start = index + 1;
+            let end = n - 1;
+
+            while (start < end) {
+            let sum = nums[start] + nums[end];
+            if (sum > target) {
+                end--;
+            } else if (sum < target) {
+                start++;
+            } else {
+                //  当start和end移动的时候如果和上一次的数字相同就跳过，避免重复
+                if (start - 1 > index && nums[start] === nums[start - 1]) {
+                start++;
+                continue;
+                }
+                if (end + 1 < n &&  nums[end] === nums[end + 1]) {
+                end--;
+                continue;
+                }
+                result.push([nums[index], nums[start], nums[end]]);
+                start++;
+            }
+            }
+            index++;
+        }
+        return result;
+        };
+
+        // var arr = [-1, 0, 1, 2, -1, -4, 1, 1, 2];
+        // var arr = [0, 0, 0, 0];
+        var arr = [-1, 0, 1, 2, -1, -4];
+        console.log(threeSum(arr))
+    </script>
+</body>
+</html>

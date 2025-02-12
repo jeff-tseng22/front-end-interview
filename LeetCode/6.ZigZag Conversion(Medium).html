@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZigZag Conversion</title>
+</head>
+<body>
+    <pre>
+        https://leetcode.com/problems/zigzag-conversion/
+        Example 1:
+        Input: s = "PAYPALISHIRING", numRows = 3
+        Output: "PAHNAPLSIIGYIR"
+        Example 2:
+        Input: s = "PAYPALISHIRING", numRows = 4
+        Output: "PINALSIGYAHRPI"
+        Explanation:
+        P     I    N
+        A   L S  I G
+        Y A   H R
+        P     I
+        Example 3:
+        Input: s = "A", numRows = 1
+        Output: "A"
+        Constraints:
+        1 <= s.length <= 1000
+        s consists of English letters (lower-case and upper-case), ',' and '.'.
+        1 <= numRows <= 1000
+    </pre>
+    <script>
+        /**
+         * @param {string} s
+         * @param {number} numRows
+         * @return {string}
+         */
+        //method1
+        var convert = function(s, numRows) {
+            if(s == null) return "";
+            if(numRows == 1) return s;
+            // 毎一輪的變化總共是numRows*2 - 2種
+            var n = numRows*2 - 2;
+            var array = [];
+            // 創立一個有numRows元素的array
+            for(var k = 0 ; k < numRows; k++){
+                array.push("");
+            }
+            for(var i in s){
+                var lineNumber = i % n;
+                if(lineNumber < numRows){
+                    // i%n 比 numRows小，s[i]直接放入array
+                    array[lineNumber] += s[i]; 
+                } else {
+                    // 計算s[i]應該屬於array哪個位子
+                    //array[numRows-1 - lineNumber-numRows-1] += s[i]; 
+                    array[2*numRows - lineNumber - 2] += s[i]; 
+                }
+            }
+            return array.join("");
+        };
+        console.log(convert("PAYPALISHIRING", 3));
+        
+        //method2
+        var convert = function(s, numRows) {
+            if (numRows === 1 || numRows >= s.length) {
+                return s;
+            }
+
+            let idx = 0, d = 1;
+            const rows = new Array(numRows).fill().map(() => []);
+
+            for (const char of s) {
+                rows[idx].push(char);
+                if (idx === 0) {
+                    d = 1;
+                } else if (idx === numRows - 1) {
+                    d = -1;
+                }
+                // console.log(idx)
+                idx += d;
+            }
+
+            for (let i = 0; i < numRows; i++) {
+                rows[i] = rows[i].join('');
+            }
+
+            return rows.join('');    
+        };
+        console.log(convert("PAYPALISHIRING", 3));
+    </script>
+</body>
+</html>

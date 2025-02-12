@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>69. Sqrt(x)</title>
+</head>
+<body>
+    <pre>
+        Example 1:
+        Input: x = 4
+        Output: 2
+        Explanation: The square root of 4 is 2, so we return 2.
+
+        Example 2:
+        Input: x = 8
+        Output: 2
+        Explanation: The square root of 8 is 2.82842..., and since we round it down to the nearest integer, 2 is returned.
+
+        Constraints:
+        0 <= x <= 231 - 1
+    </pre>
+    <script>
+        //solution1
+        var mySqrt = function(x) {
+            let guess = x
+            // 原值减去切线与x轴的交点的平方
+            while(Math.abs(x - guess * guess)>=1){
+            // 切线与x轴的交点是：xn+1 = (xn + m / xn ) / 2
+            guess = (guess + x / guess) / 2
+            }
+            return parseInt(guess)
+        };
+        console.log(mySqrt(4));
+
+        //solution2
+        var mySqrt2 = function(x) {
+            return Math.floor(Math.sqrt(x));
+        };
+        console.log(mySqrt2(4));
+    </script>
+</body>
+</html>

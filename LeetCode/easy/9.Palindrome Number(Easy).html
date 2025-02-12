@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>9. Palindrome Number</title>
+</head>
+<body>
+    <pre>
+        https://leetcode.com/problems/palindrome-number/
+        Given an integer x, return true if x is a palindrome and false otherwise.
+        Example 1:
+            Input: x = 121
+            Output: true
+            Explanation: 121 reads as 121 from left to right and from right to left.
+        Example 2:
+            Input: x = -121
+            Output: false
+            Explanation: From left to right, it reads -121. From right to left, it becomes 121-. Therefore it is not a palindrome.
+        Example 3:
+            Input: x = 10
+            Output: false
+            Explanation: Reads 01 from right to left. Therefore it is not a palindrome.
+            Constraints:
+            -231 <= x <= 231 - 1
+    </pre>
+    <script>
+        //method1
+        var isPalindrome1 = function(x) {
+            if (!isNaN(x)) {
+                x = x.toString();
+            }
+            y = x.split("").reverse().join("");
+            if (x === y) {
+                return true;
+            } else {
+                return false;
+            }
+        };
+        console.log(isPalindrome1(121)); //Output: true
+        console.log(isPalindrome1(-121)); //Output: false
+
+        //method2
+        let isPalindrome2 = function(x) {
+            // Convert number to string
+            let str = x.toString();
+            // Check palindrome condition
+            let left = 0;
+            let right = str.length - 1;
+        
+            while (left < right) {
+                if (str[left] !== str[right]) {
+                    return false;
+                }
+                left++;
+                right--;
+            }
+            return true;
+        }
+        // console.log(isPalindrome2(121)); //Output: true
+        // console.log(isPalindrome2(-121)); //Output: false
+    </script>
+</body>
+</html>

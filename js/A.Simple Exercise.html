@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Exercise</title>
+</head>
+<body>
+    <h1>Simple Exercise</h1>
+    <div>
+        1.Write a function called "printMany" that prints out integers 1, 2, 3, ..., 100.
+    </div>
+        <!-- <script>
+            function printMany() {
+                for (let i = 1; i <= 100; i++){
+                    console.log(i);
+                }
+            }
+            printMany();
+        </script> -->
+
+    <div>
+        2.Write a function called "printEvery3" that prints out integers 1, 4, 7, 10, ..., 88.
+    </div>
+        <!-- <script>
+            //for loop
+            function printEvery3() {
+                for (let i = 1; i<=88; i+=3) {
+                    console.log(i);
+                }
+            }
+            printEvery3();
+
+            //while loop
+            function printEvery3() {
+                let i = 1;
+                while(i <= 88){
+                    console.log(i);
+                    i += 3;
+                }
+            }
+            printEvery3();
+        </script> -->
+
+    <div>
+        3.Write a function called "stars" that takes an integer as input, and returns the concatenation of n continuous "*".
+    </div>
+    <!-- <script>
+        function stars(n){
+            let result = "";
+            for (let i = 0; i < n; i++) {
+                result += "*";
+            }
+            return result;
+        }
+        console.log(stars(3));
+        console.log(stars(10));
+    </script> -->
+
+    <div>
+        4.Write a function called "isUpperCase" that checks if the first letter of the string is uppercase.
+    </div>
+    <!-- <script>
+        function isUpperCase(str){
+            if (str.length == 0) {
+                return false;
+            }
+            if (str[0] == str[0].toUpperCase()) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        console.log(isUpperCase("ABCD")); // returns true;
+        console.log(isUpperCase("")); // returns false
+        console.log(isUpperCase("aBCD")); // returns false
+
+        function isUpperCase(str){
+            if (str.length == 0) {
+                    return false;
+                }
+            return str[0] == str[0].toUpperCase();
+        }
+        console.log(isUpperCase("ABCD")); // returns true;
+        console.log(isUpperCase("")); // returns false
+        console.log(isUpperCase("aBCD")); // returns false
+    </script> -->
+
+    <div>
+        5.Write a function called "isAllUpperCase" that checks if all letters in the given string is uppercase.
+    </div>
+    <!-- <script>
+        function isAllUpperCase(str){
+            if (str.length == 0) {
+                return false;
+            }
+            let allUpperCase = true;
+            for (let i = 0; i < str.length; i++) {
+                if (str[i] != str[i].toUpperCase()) {
+                    allUpperCase = false;
+                }
+            }
+            return allUpperCase; 
+        }
+
+        console.log(isAllUpperCase("ABCD")); // returns true
+        console.log(isAllUpperCase("")); // returns false
+        console.log(isAllUpperCase("ABCDEFGHIJKLm")); // returns false
+    </script> -->
+
+    <div>
+        6.Write a function called "position" that prints out the first uppercase letter and its index location. If not found, prints -1.
+    </div>
+    <!-- <script>
+        function position(str) {
+            for (let i = 0; i < str.length; i++) {
+                if (str[i] == str[i].toUpperCase()) {
+                    return str[i] + " " + i;
+                }
+            }
+            return -1;
+        }
+
+        console.log(position("abcd")); // prints -1
+        console.log(position("AbcD")); // prints A 0
+        console.log(position("abCD")); // prints C 2
+    </script> -->
+
+    <div>
+        7.Write a function called "findSmallCount" that takes one array of integers and one integer as input, and returns an integer indicating how many elements in the array is smaller than the input integer.
+    </div>
+    <!-- <script>
+        function findSmallCount(arr, n){
+            let counter = 0;
+            for (let i = 0; i < arr.length; i++) {
+                if(arr[i] < n){
+                    counter++;
+                }
+            }
+            return counter;
+        }
+        console.log(findSmallCount([1,2,3],2)); //returns 1
+        console.log(findSmallCount([1,2,3,4,5],0)); //returns 0
+    </script> -->
+
+    <div>
+        8.Write a function called "findSmallerTotal" that takes one array of integers and one integer as input, and returns the sum of all elements in the array that are smaller than the input integer.
+    </div>
+    <!-- <script>
+        function findSmallerTotal(arr,n){
+            let sum = 0;
+            for(let i = 0; i < arr.length ;i++){
+                if(arr[i] < n){
+                    sum += arr[i];
+                }
+            }
+            return sum;
+        }
+        console.log(findSmallerTotal([1, 2, 3], 3)) // returns 3
+        console.log(findSmallerTotal([1, 2, 3], 1)) // returns 0
+        console.log(findSmallerTotal([3, 2, 5, 8, 7], 999)) // returns 25
+        console.log(findSmallerTotal([3, 2, 5, 8, 7], 0)) // returns 0
+    </script> -->
+
+    <div>
+        9.Write a function called "findAllSmall" that takes one array of integers and another integer as input, and returns an array of integers that contains all elements that are smaller than the input integer.
+    </div>
+    <!-- <script>
+        function findAllSmall (arr, n){
+            let answer = [];
+            for (let i = 0;i < arr.length; i++){
+                if (arr[i] < n) {
+                    answer.push(arr[i]);
+                }
+            }
+            return answer;
+        }
+        console.log(findAllSmall([1, 2, 3], 10)); // returns [1, 2, 3]
+        console.log(findAllSmall([1, 2, 3], 2)); // returns [1]
+        console.log(findAllSmall([1, 3, 5, 4, 2], 4)); // returns [1, 3, 2]
+    </script> -->
+
+    <div>
+        10.Write a function called "sum" that takes one array of numbers, and return the sum of all elements in the input array.
+    </div>
+    <!-- <script>
+        function sum(arr){
+            let result = 0;
+            for (let i = 0; i < arr.length; i++) {
+                result += arr[i];
+            }
+            return result;
+        }
+        console.log(sum([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])); // returns 55
+        console.log(sum([])); // return 0
+        console.log(sum([-10, -20, -30])); // return -60
+    </script> -->
+
+    <div>
+        11.Write a function called "stars" which prints out layers of stars in the following pattern:<br>
+        stars(1);<br>
+        // *<br>
+        stars(4);<br>
+        // *<br>
+        // **<br>
+        // ***<br>
+        // ****
+    </div>
+    <!-- <script>
+        function stars(n) {
+            for (let i = 0; i <= n; i++){
+                //prints out a layer of stars
+                let line = "";
+                for (let j = 0; j < i; j++){
+                    line += "*";
+                }
+                console.log(line);
+            }
+        }
+        stars(1);
+        console.log("------------------");
+        stars(4);
+        console.log("------------------");
+        stars(10);
+    </script> -->
+
+    <div>
+        12.Write a function called "makeStars" which prints out stars in the following pattern:
+        (If you are using code runner, node.js or web developer's tool, the result of makeStars function will look exactly the same as exercise 1 stars. This is 100% okay. The reason why I am putting this exercise right here is because, many programming languages that deal with files would require you to write codes like this.)<br>
+        makeStars(1);<br>
+        // *<br>
+        makeStars(2);<br>
+        // *\n**<br>
+        makeStars(5);<br>
+        // *\n**\n***\n****\n*****
+    </div>    
+    <!-- <script>
+        function makeStars(n) {
+            let result = "*";
+            for (let i = 2; i <= n; i++) {
+                let s = "\n";
+                for (let j = 0; j < i; j++) {
+                    s += "*";
+                }
+                result += s;
+            }
+            console.log(result);
+        }
+        makeStars(1);
+        console.log("-----------");
+        makeStars(2);
+        console.log("-----------");
+        makeStars(15);
+    </script> -->
+
+    <div>
+        13.Write a function called "stars2" which prints out layers of stars in the following pattern:
+        stars2(1);<br>
+        // *<br>
+        stars2(2);<br>
+        // *<br>
+        // **<br>
+        // *<br>
+        stars2(3);<br>
+        // *<br>
+        // **<br>
+        // ***<br>
+        // **<br>
+        // *<br>
+        stars2(4);<br>
+        // *<br>
+        // **<br>
+        // ***<br>
+        // ****<br>
+        // ***<br>
+        // **<br>
+        // *
+    </div>   
+    <!-- <script>
+        function stars2(n) {
+            for (let i = 0; i <= n; i++){
+                //prints out a layer of stars
+                let line = "";
+                for (let j = 0; j < i; j++){
+                    line += "*";
+                }
+                console.log(line);
+            }
+            for (let i = n - 1; i > 0; i--) {
+                let line = "";
+                for (let j = 0; j < i; j++) {
+                    line +="*";
+                }
+                console.log(line);
+            }
+        }
+        stars2(5);
+        stars2(20);
+    </script> -->
+
+    <div>
+        14.Write a function called "table" which takes an input n, and prints out n x 1 to n x 9
+        table(3);<br>
+        3 x 1 = 3<br>
+        3 x 2 = 6<br>
+        ...<br>
+        3 x 9 = 27
+    </div>    
+    <!-- <script>
+        function table(n) {
+            for (let i = 1; i <= 9; i++) {
+                console.log(n + " * " + i + " = " + n * i);
+            }
+        }
+        table(3);
+        table(8);
+    </script> -->
+    <script>
+        // function table(n) {
+        //     let i = 1;
+        //     while (i <= 9) {
+        //         let result = n * i;
+        //         console.log(n + " x " + i + " = " + result);
+        //         i++;
+        //     }
+        // }
+        // table(3);
+    </script>
+
+    <div>
+        15.Write a function called "table9to9" that prints out the multiplication table:<br>
+        1 x 1 = 1<br>
+        1 x 2 = 2<br>
+        1 x 3 = 3<br>
+        ...<br>
+        1 x 9 = 9<br>
+        2 x 1 = 2<br>
+        2 x 2 = 4<br>
+        ...<br>
+        9 x 9 = 81
+    </div>    
+    <!-- <script>
+        function table9to9() {
+            for (let i = 1; i <= 9; i++) {
+                for (let j = 1; j <= 9; j++) {
+                    console.log(i + " * " + j + " = " + i * j);	
+                }
+            }
+        }
+        table9to9();
+    </script> -->
+
+    <div>
+        (Tobe...)16.Write a function called "fib" that takes an integer $n$ as input, and returns the $n$th element of the Fibonacci Sequence.
+        If you never hear about Fibonacci Sequence, read about it from:
+        fib(0); // returns 0<br>
+        fib(1); // returns 1<br>
+        fib(2); // returns 1<br>
+        fib(3); // returns 2<br>
+        fib(8); // returns 21<br>
+        1,1,2,3,5,8,13,21,34...
+    </div>    
+    <script>
+        // function fib(n) {
+        //     if (n == 0) { 
+        //         return 0;
+        //     } else if (n == 1) { 
+        //         return 1;
+        //     } else {
+        //         //return "I don't know yet."
+        //         return fib(n - 1) + fib(n - 2);
+        //     }
+        // }
+        // console.log(fib(1)) //1
+        // console.log(fib(5)) //fib(4) + fib(3)
+        // //fib(4) = fib(3) + fib(2), fib(3) = fib(2) + fib(1)
+        // for (let i = 0; i < 10; i++) {
+        //     console.log(fib(i));
+        // }
+
+        //優化fib
+        function fib(n) {
+            let arr = [0, 1];
+            let i = 0;
+            while (arr.length <= n){
+                arr.push(arr[i] + arr[i + 1]);
+                i++;
+            }
+            console.log(arr);
+            console.log(arr[n]);
+        }
+        fib(8);
+    </script>
+
+    <div>
+        17.Write a function called "reverse" that takes a string as input, and returns the reverse string.<br>
+        reverse("abcd"); // returns "dcba"<br>
+        reverse("I am a good guy."); // returns ".yug doog a am I"
+    </div> 
+    <!-- <script>
+        function reverse(str) {
+            let result = "";
+            for (let i = str.length - 1; i >=0; i--) {
+                result += str[i];
+            }
+            return result;
+        }
+        console.log(reverse("abcd"));
+        console.log(reverse("I am a good guy."));
+    </script> -->
+
+    <div>
+        18.Write a function called "swap" that takes a string as input, and returns a new string with lowercase changed to uppercase, uppercase changed to lowercase.<br>
+        swap("Aloha"); // returns "aLOHA"<br>
+        swap("Love you."); // returns "lOVE YOU."
+    </div> 
+    <!-- <script>
+        function swap(str) {
+            let result = "";
+            for (let i = 0; i < str.length; i++) {
+                if (str[i] == str[i].toUpperCase()){
+                    result += str[i].toLowerCase();
+                } else {
+                    result += str[i].toUpperCase();
+                }
+            }
+            console.log(result);
+            return result;
+        }
+        swap("Aloha");
+        swap("Love you.");
+    </script> -->
+
+    <div>
+        19.Write a function called "findMin" which takes an array as input, and returns the minimum element in the input array.
+        findMin([1, 2, 5, 6, 99, 4, 5]); // returns 1<br>
+        findMin([]); // returns undefined<br>
+        findMin([1, 6, 0, 33, 44, 88, -10]); // returns -10
+    </div> 
+    <!-- <script>
+        function findMin(arr) {
+            let min = arr[0];
+            for (let i = 1; i< arr.length; i++) {
+                if(arr[i] < min) {
+                    min = arr[i]
+                }
+            }
+            console.log(min);
+            return min;
+        }
+        findMin([1, 2, 5, 6, 99, 4, 5]); // returns 1
+        findMin([]); // returns undefined
+        findMin([1, 6, 0, 33, 44, 88, -10]); // returns -10
+    </script> -->
+
+    <div>
+        20.Write a function called "findNthMin", which takes an array of integers and another integer n, and returns the nth smallest number in the given array.
+    </div>
+    <!-- <script>
+        function findNthMin(arr, n){
+            for (let i = 0; i < arr.length; i++) {
+                let counter = 0;
+                for (let j = 0; j < arr.length; j++) {
+                    if (arr[j] < arr[i]) {
+                        counter++;
+                    }
+                }
+                if (counter == n-1) {
+                    return arr[i];
+                }
+            }
+        }
+
+        console.log(findNthMin([1, 2, 3, 4, 5], 1)); //return 1
+        console.log(findNthMin([1, 3, 5, 7, 9], 3)); //return 5
+        console.log(findNthMin([1, -6, -3, 2, 4], 3)); //return 1
+    </script> -->
+
+</body>
+</html>
