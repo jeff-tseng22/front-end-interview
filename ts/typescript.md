@@ -32,8 +32,19 @@ tsconfig.json
 ## 安裝TS(資料夾或全局)
 npm install typescript --save-dev
 npm install typescript -g 
-
-
+查看指令:
+tsc -help
+編譯ts:
+tsc index.ts
+創建config檔案(typescript.json):
+tsc --init
+"rootDir": "./src", 
+"outDir": "./dist",   
+"allowJs": true, 
+"sourceMap": true, //chrome dev tools可直接debug。console旁邊顯示ts檔案
+"module": "commonjs", 
+"target": "es2016", 
+"strict": true,   
 
 
 ## type any vs. unknown 的差別
