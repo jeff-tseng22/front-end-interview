@@ -1,3 +1,41 @@
+## 什麼是TypeScript
+1. 加強版JavaScript(JS是動態型語言)
+2. 加強了"type"部分
+3. 開發完後，還是需要編譯成JavaScript
+4. 適用於開發前端與後端，例如：搭配React、Express框架
+## 為什麼需要TypeScript
+1. 開發時"type"類型檢查
+2. 補強動態語言JS，run起來才出錯的缺點
+3. 提高專案程式碼的維護性
+## TypeScript優缺點比較
+優點
+1. 減少程式碼運行時bug
+2. 提高專案的穩定性
+3. 看懂一些function參數等等
+缺點
+1. 不是真正的類型檢查
+2. 需要編譯，CI/CD部署速度慢
+3. 花更多時間開發和學習
+## 一定需要TypeScript嗎
+1. 時間成本考量
+2. 專案適合不適合
+3. Trade-off(考慮cp值)
+## 編譯流程
+### 開發時: TS
+檔案.ts
+檔案.tsx
+tsconfig.json
+### 編譯工具: tsc
+### 最後的產物: JS
+前端: 給html引用
+後端: 部署到node.js環境
+## 安裝TS(資料夾或全局)
+npm install typescript --save-dev
+npm install typescript -g 
+
+
+
+
 ## type any vs. unknown 的差別
 any 和 unknown 都是表示「任意型別」的關鍵字，主要在於安全性與使用限制。
 1. any
@@ -284,8 +322,8 @@ console.log(sum(10, 20, 30));   // 60
 清晰的 API 設計：
 開發者可以明確知道函式支援哪些參數組合與返回值。
 
-
-
 ### source
+布魯斯的 TypeScript 入門教學｜用TypeScript輕鬆打造實時聊天室
+https://www.youtube.com/watch?v=GinkGJZBHIY
 https://www.typescriptlang.org
 https://hackmd.io/@mingjunlu/front-end-interview-questions
