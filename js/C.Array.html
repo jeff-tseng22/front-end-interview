@@ -102,7 +102,7 @@
             { first: 'Lise', last: 'Meitner', year: 1878, passed: 1968 },
             { first: 'Hanna', last: 'Hammarström', year: 1829, passed: 1909 }
         ];
-        // 5.map
+        // 5.map(返回新的array，不會改變原本array)
         const mapInventors5 = inventors.map(function(item){
             return item.year > 1870;
         })
@@ -117,6 +117,17 @@
         })
         console.log(mapInventors50) // ["1879歲", false, false....]
         // 不論是空的或是 false，都會回傳
+        // 6.for(可以提前中斷break, continue)
+        const arr6 = [1, 2, 3, 4, 5];
+        for (let i = 0; i < arr.length; i++) {
+            console.log(arr6[i]);
+        }
+        // 7.for...of（ES6 新增)
+        const arr7 = [1, 2, 3, 4, 5];
+        for (const value of arr) {
+            console.log(value);
+        }
+
     </script>
 </body>
 </html>
