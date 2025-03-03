@@ -48,9 +48,6 @@
 
     // 去除注音符號的函數
     function removeZhuyin(text) {
-        // 在這裡添加您的邏輯，用於去除注音符號
-        // 例如，您可以使用正則表達式將注音符號替換為空字符串
-        // 以下是一個示例，可能需要根據您的需求進行調整
         const zhuyinRegex = /[\u3105-\u3129]/g; // 注音符號的Unicode範圍
         const cleanedText = text.replace(zhuyinRegex, '');
         return cleanedText;
